@@ -9,7 +9,7 @@ require("dotenv").config();
 
 app.use(
   cors({
-    origin: "https://stackswipe-frontend.onrender.com",
+    origin: "origin: "http://localhost:5173",",
     credentials: true,
   })
 );
