@@ -23,7 +23,6 @@ const userRouter = require("./routes/user");
 const initializeSocket = require("./utils/socket");
 const chatRouter = require("./routes/chat");
 
-
 app.use("/", authRouter);
 app.use("/", profileRouter);
 app.use("/", requestRouter);
@@ -33,13 +32,15 @@ app.use("/", chatRouter);
 const server = http.createServer(app);
 initializeSocket(server);
 
+const PORT = process.env.PORT || 7777;
+
 connectDB()
   .then(() => {
     console.log("Database connection established...");
-    server.listen(process.env.PORT, () => {
-      console.log("Server is successfully listening on port 7777...");
+    server.listen(PORT, () => {
+      console.log(`Server is listening on port ${PORT}...`);
     });
   })
   .catch((err) => {
-    console.error("Database cannot be connected!!");
+    console.error("Database cannot be connected!!", err);
   });
